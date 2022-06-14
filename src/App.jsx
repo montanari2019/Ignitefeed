@@ -1,25 +1,28 @@
 import { Header } from "./components/Header";
 import { Post } from "./Post";
-import './global.css'
+import styles from "./App.modules.css";
+import "./global.css";
 
 export function App() {
   return (
     <div>
+      <Header />
 
-      <Header/>
-      <h1>Bem vindo aos posts</h1>
+      <div className={styles.wrapper}>
+        <aside>Sidebar</aside>
 
-      <br />
+        <main>
+          <Post
+            author="Ikaro Montanari"
+            comment="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam provident aspernatur excepturi tenetur veniam, explicabo tempore sapiente quis vel, incidunt officiis enim porro iure minima, neque vitae. Repudiandae, laudantium cumque."
+          />
 
-      <Post
-        author="Ikaro Montanari"
-        comment="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam provident aspernatur excepturi tenetur veniam, explicabo tempore sapiente quis vel, incidunt officiis enim porro iure minima, neque vitae. Repudiandae, laudantium cumque."
-      />
-
-      <Post
-        author="Adam Bortolozo"
-        comment="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam provident aspernatur excepturi tenetur veniam, explicabo tempore sapiente quis vel, incidunt officiis enim porro iure minima, neque vitae. Repudiandae, laudantium cumque."
-      />
+          <Post
+            author="Adam Bortolozo"
+            comment="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam provident aspernatur excepturi tenetur veniam, explicabo tempore sapiente quis vel, incidunt officiis enim porro iure minima, neque vitae. Repudiandae, laudantium cumque."
+          />
+        </main>
+      </div>
     </div>
   );
 }
