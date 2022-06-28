@@ -7,11 +7,13 @@ import { Comment } from "../Comment/Comment";
 import stylesPost from "./Post.module.css";
 
 export function Post({ author, content, publisherdAt }) {
-  // console.log(publisherdAt)
 
   const [comments, setComments] = useState(["Que post legal"]);
 
   const [newCommentText, setNewCommentText] = useState("");
+
+  const isNewCommentEmpty = newCommentText.length === 0
+
 
   function handleSubmitComment() {
     event.preventDefault();
@@ -20,7 +22,12 @@ export function Post({ author, content, publisherdAt }) {
   }
 
   function handleNewCommentText() {
+    event.target.setCustomValidity("")
     setNewCommentText(event.target.value);
+  }
+
+  function handleNewCommentInvalid(){
+    event.target.setCustomValidity("Esse campo é obrigatório")
   }
 
   function deleteComment(commentToDelete) {
@@ -86,10 +93,14 @@ export function Post({ author, content, publisherdAt }) {
           placeholder="Deixe seu comentário"
           value={newCommentText}
           onChange={handleNewCommentText}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isNewCommentEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
 
