@@ -11,15 +11,22 @@ export function Post({ author, content, publisherdAt }) {
   // console.log(publisherdAt)
 
   const [comment, setComments] = useState([
-    1,2
+    "Que post legal"
   ])
 
+  const [newCommentText, setNewCommentText] = useState('')
+
   function handleSubmitComment() {
-       console.log("oi")
+       
        event.preventDefault()
-       setComments([...comment, comment.length + 1])
+       setComments([...comment, newCommentText])
+       setNewCommentText('')
 
 
+  }
+
+  function handleNewCommentText(){
+     setNewCommentText(event.target.value)
   }
 
   const publisherdDateFormatted = format(publisherdAt, "d 'de' LLLL 'às' HH:mm'h'",{
@@ -64,7 +71,13 @@ export function Post({ author, content, publisherdAt }) {
 
       <form onSubmit={handleSubmitComment} className={stylesPost.formComment}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe seu comentário" />
+        
+        <textarea 
+          placeholder="Deixe seu comentário" 
+          value={newCommentText}
+          onChange={handleNewCommentText}
+        
+        />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
@@ -72,7 +85,7 @@ export function Post({ author, content, publisherdAt }) {
 
       <div className={stylesPost.commentList}>
         {comment.map( comment => {
-          return <Comment/>
+          return <Comment comment={comment}/>
         })}
       </div>
     </article>
